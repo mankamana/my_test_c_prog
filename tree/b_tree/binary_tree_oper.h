@@ -9,21 +9,19 @@
  * 
  * *****************************************************************************
  * 
- * FILE NAME  :binary_tree_oper.c
+ * FILE NAME  :binary_tree_oper.h
  * 
- * DESCRIPTION: This file contains all the possible operation in binary 
- * search tree.
+ * DESCRIPTION: This file contains all the declaration needed for binary tree
  *
  * AUTHOR   : Mankamana Prasad Mishra
  * 
  *******************************************************************************/
 
-#include <binary_tree_oper.h>
+#include <stdio.h>
 
-/*
- * Main program, which would provide sample input and call the respective API to 
- * make operation 
- */
-int main (void)
-{
-}
+typedef struct bst_type {
+    int data;            // Data to be stored in node
+    bst_type *left;      // pointer to left node
+    bst_type *right;     // pointer to right node
+    bst_type *parent;    // pointer to parent node 
+}bst_node;
