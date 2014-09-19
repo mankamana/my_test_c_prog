@@ -19,5 +19,6 @@
 
 int get_num_of_element_in_array (int *a) 
 {
-
+    printf ("%s(): size of array = %d", sizeof (a));
+    return ((sizeof (a))/ (sizeof (int)));
 }
