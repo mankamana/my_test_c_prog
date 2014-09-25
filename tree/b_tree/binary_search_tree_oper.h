@@ -18,10 +18,11 @@
  *******************************************************************************/
 
 #include <stdio.h>
+#include <conio.h>
 
 typedef struct bst_type {
     int data;            // Data to be stored in node
-    bst_type *left;      // pointer to left node
-    bst_type *right;     // pointer to right node
-    bst_type *parent;    // pointer to parent node 
+    struct bst_type *left;      // pointer to left node
+    struct bst_type *right;     // pointer to right node
+    struct bst_type *parent;    // pointer to parent node 
 }bst_node;
