@@ -18,8 +18,7 @@
  *******************************************************************************/
 
 #include <stdio.h>
-#include <conio.h>
-
+#include <stdlib.h>
 typedef struct bst_type {
     int data;            // Data to be stored in node
     struct bst_type *left;      // pointer to left node

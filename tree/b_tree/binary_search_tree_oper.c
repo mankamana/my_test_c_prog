@@ -28,18 +28,34 @@ int get_num_of_element_in_array (int *a)
 
 void add_member_to_tree (int data, bst_node *root) 
 {
-    bst_node *temp_node;
-    temp_node = (bst_node *)malloc (sizeof (bst_node));
-    memset (temp_node, 0, sizeof(bst_node));
-
-    temp_node->data = data;
 
     if (root == NULL) {
-        *root = temp_node;
+        bst_node *temp_node;
+        temp_node = (bst_node *)malloc (sizeof (bst_node));
+
+        temp_node->data = data;
+        temp_node->left = NULL;
+        temp_node->right = NULL;
+        temp_node->parent = root;
+        *root = *temp_node;
     } else {
-
+        if (root->data <= data) {
+            add_member_to_tree (data , root->left);
+        } else  {
+            add_member_to_tree (data , root->right);
+        }
     }
+    return;
+}
 
+void display_tree_nodes (bst_node *root) 
+{
+    if (root == NULL) 
+        return;
+    if (root->left)
+        display_tree_nodes (root->left);
+    else 
+        display_tree_nodes (root->right);
 }
 
 /*
@@ -51,14 +67,7 @@ int main (void)
     int size_of_array = 0;
     int i;
     int input_array [] = {8, 3, 10, 1, 6, 14, 4, 7, 13};
-    bst_node *root; 
-    root = (bst_node *)malloc (sizeof (bst_node));
-    memset (root, 0, sizeof(bst_node));
-
-    if (root == NULL) {
-        printf ("\n Memory allocation failed");
-        return 0;
-    }
+    bst_node *root = NULL; 
 
 
 
@@ -68,5 +77,6 @@ int main (void)
     for (i = 0 ; i < size_of_array; i++) {
         add_member_to_tree (input_array[i], root);
     }
+    display_tree_nodes (root);
 
 }
