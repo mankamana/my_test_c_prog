@@ -36,8 +36,7 @@ void add_member_to_tree (int data, bst_node *root)
         temp_node->data = data;
         temp_node->left = NULL;
         temp_node->right = NULL;
-        temp_node->parent = root;
-        *root = *temp_node;
+        root = temp_node;
     } else {
         if (root->data <= data) {
             add_member_to_tree (data , root->left);
@@ -78,5 +77,4 @@ int main (void)
         add_member_to_tree (input_array[i], root);
     }
     display_tree_nodes (root);
-
 }
