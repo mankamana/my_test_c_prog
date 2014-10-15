@@ -34,12 +34,14 @@ int check_subsequence (char *str1, char *str2)
     if ((str1 == NULL) || (str2 == NULL))
     {
         printf ("\n%s(): One of the string is NULL, returning", __FUNCTION__);
+        return FALSE;
     }
 
     int len1 = 0;
     int len2 = 0;
     int i    = 0;
     int match = 0;
+    int temp = 0;
 
     len1 = strlen (str1);
     len2 = strlen (str2);
@@ -48,8 +50,9 @@ int check_subsequence (char *str1, char *str2)
     if (len1 > len2) {
         return FALSE;
     }
+    temp = len2;
 
-    for (i = 0; i<= len1; i++) {
+    for (i = 0; (i<= temp) && (match != len1); i++) {
         if (*str1 == *str2) {
             match++;
             str1++;
@@ -69,30 +72,39 @@ int check_subsequence (char *str1, char *str2)
 
 void main ()
 {
+    char *str1 = NULL;
+    char *str2 = NULL;
 
-    if (check_subsequence ("", "")) {
+
+    if (check_subsequence (str1, str2)) {
         printf ("\n1 - %s(): subsequence TRUE", __FUNCTION__);
     } else {
         printf ("\n1 - %s(): subsequence FALSE", __FUNCTION__);
     }
 
-    if (check_subsequence ("", "test")) {
+    str2 = "test";
+    if (check_subsequence (str1, str2)) {
         printf ("\n2 - %s(): subsequence TRUE", __FUNCTION__);
     } else {
         printf ("\n2 - %s(): subsequence FALSE", __FUNCTION__);
     }
 
-    if (check_subsequence ("AXY", "YADXCP")) {
+    str1 = "test";
+    str2 = "testtesttest";
+    if (check_subsequence (str1, str2)) {
         printf ("\n3 - %s(): subsequence TRUE", __FUNCTION__);
     } else {
         printf ("\n3 - %s(): subsequence FALSE", __FUNCTION__);
     }
 
-    if (check_subsequence ("AXY", "ADXCPY")) {
+    str1 = "AXY";
+    str2 = "ADXCPY";
+    if (check_subsequence (str1, str2)) {
         printf ("\n4 - %s(): subsequence TRUE", __FUNCTION__);
     } else {
         printf ("\n4 - %s(): subsequence FALSE", __FUNCTION__);
     }
+    printf ("\n");
 
     return;
 }
