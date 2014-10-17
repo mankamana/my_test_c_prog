@@ -26,7 +26,7 @@ int get_num_of_element_in_array (int *a)
     return ((sizeof (a))/ (sizeof (int)));
 }
 
-void add_member_to_tree (int data, bst_node *root) 
+bst_node* add_member_to_tree (int data, bst_node *root) 
 {
 
     if (root == NULL) {
@@ -37,24 +37,28 @@ void add_member_to_tree (int data, bst_node *root)
         temp_node->left = NULL;
         temp_node->right = NULL;
         root = temp_node;
+        return root;
     } else {
-        if (root->data <= data) {
-            add_member_to_tree (data , root->left);
+        if ((root)->data >= data) {
+
+            (root)->left  =  (add_member_to_tree (data , (root)->left));
         } else  {
-            add_member_to_tree (data , root->right);
+            (root)->right =  (add_member_to_tree (data , (root)->right));
         }
     }
-    return;
+    return root;
 }
 
 void display_tree_nodes (bst_node *root) 
 {
     if (root == NULL) 
+    {
         return;
-    if (root->left)
-        display_tree_nodes (root->left);
-    else 
-        display_tree_nodes (root->right);
+    }
+    display_tree_nodes (root->left);
+    printf ("\nData = %d", root->data);
+    display_tree_nodes (root->right);
+    printf ("\n");
 }
 
 /*
@@ -68,13 +72,11 @@ int main (void)
     int input_array [] = {8, 3, 10, 1, 6, 14, 4, 7, 13};
     bst_node *root = NULL; 
 
-
-
     size_of_array = ((sizeof (input_array))/ (sizeof (int)));
     printf ("%s(): size of array = %d\n", __FUNCTION__, size_of_array);
 
     for (i = 0 ; i < size_of_array; i++) {
-        add_member_to_tree (input_array[i], root);
+        root = add_member_to_tree (input_array[i], root);
     }
     display_tree_nodes (root);
 }
