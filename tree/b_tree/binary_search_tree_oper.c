@@ -58,7 +58,21 @@ void display_tree_nodes (bst_node *root)
     display_tree_nodes (root->left);
     printf ("\nData = %d", root->data);
     display_tree_nodes (root->right);
-    printf ("\n");
+}
+
+int count_node (bst_node *root)
+{
+    if (root == NULL)
+        return 0;
+    return (count_node(root->left) + 1 + count_node(root->right));
+
+}
+
+int max_depth_tree (bst_node *root)
+{
+    if (root == NULL)
+        return 0;
+    return ()
 }
 
 /*
@@ -79,4 +93,6 @@ int main (void)
         root = add_member_to_tree (input_array[i], root);
     }
     display_tree_nodes (root);
+    printf ("\n");
+    printf ("\n count = %d\n", count_node(root));
 }
