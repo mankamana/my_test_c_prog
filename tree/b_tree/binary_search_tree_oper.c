@@ -71,7 +71,7 @@ int count_node (bst_node *root)
 int max_depth_tree (bst_node *root)
 {
     if (root == NULL) {
-        return 0;
+        return -1;
     } else {
         int left_height = max_depth_tree (root->left);
         int right_height = max_depth_tree (root->right);
@@ -82,6 +82,41 @@ int max_depth_tree (bst_node *root)
     }
 }
 
+int min_value_tree (bst_node *root) 
+{
+    if (root == NULL) 
+        return 0;
+    while (root->left != NULL) 
+        root = root->left;
+    return (root->data);
+}
+
+int max_value_tree (bst_node *root)
+{
+    if (root == NULL)
+        return 0;
+    while (root->right != NULL) 
+        root = root->right;
+    return (root->data);
+}
+
+int has_some_path (bst_node *root, int sum)
+{
+    int sub_sum;
+    if (root == NULL)
+        return ( (sum == 0));
+    
+    sub_sum = sum - root->data ; 
+        return (has_some_path (root->left, sub_sum) 
+                || has_some_path (root->right, sub_sum));
+
+}
+
+void print_all_possible_paths ()
+{
+
+}
+
 /*
  * Main program, which would provide sample input and call the respective API to 
  * make operation 
@@ -90,7 +125,7 @@ int main (void)
 {
     int size_of_array = 0;
     int i;
-    int input_array [] = {1,2,3};
+    int input_array [] = {100,45,76,23,123,654,5674,235,45,3,46,4};
     bst_node *root = NULL; 
 
     size_of_array = ((sizeof (input_array))/ (sizeof (int)));
@@ -105,4 +140,13 @@ int main (void)
 
     printf ("\n");
     printf ("\n height = %d\n", max_depth_tree(root));
+
+    printf ("\n");
+    printf ("\n min_value = %d\n", min_value_tree(root));
+
+    printf ("\n");
+    printf ("\n max_value = %d\n", max_value_tree(root));
+
+    printf ("\n");
+    printf ("\n has sum = %d\n", has_some_path(root, 1112));
 }
