@@ -70,9 +70,16 @@ int count_node (bst_node *root)
 
 int max_depth_tree (bst_node *root)
 {
-    if (root == NULL)
+    if (root == NULL) {
         return 0;
-    return ()
+    } else {
+        int left_height = max_depth_tree (root->left);
+        int right_height = max_depth_tree (root->right);
+        if (left_height > right_height)
+            return (left_height+1);
+        else 
+            return (right_height+1);
+    }
 }
 
 /*
@@ -83,7 +90,7 @@ int main (void)
 {
     int size_of_array = 0;
     int i;
-    int input_array [] = {8, 3, 10, 1, 6, 14, 4, 7, 13};
+    int input_array [] = {1,2,3};
     bst_node *root = NULL; 
 
     size_of_array = ((sizeof (input_array))/ (sizeof (int)));
@@ -95,4 +102,7 @@ int main (void)
     display_tree_nodes (root);
     printf ("\n");
     printf ("\n count = %d\n", count_node(root));
+
+    printf ("\n");
+    printf ("\n height = %d\n", max_depth_tree(root));
 }
