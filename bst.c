@@ -65,9 +65,25 @@ int common_lowest_parent (tree *root, int num1, int num2)
     }
 }
 
+void is_tree_bst (tree *root, int *result) 
+{
+    static tree *prev_node = NULL;
+    if (root == NULL)
+        return;
+    is_tree_bst (root->left, result);
+    if (prev_node && (prev_node->data <= root->data )) {
+        *result = 1;
+    } else {
+        *result =0;
+    }
+    prev_node = root;
+    is_tree_bst (root->right, result);
+}
+
 void main ()
 {
     tree *root = NULL;
+    tree *new_node;
     int h;
     int common_parent = 0;
     insert_node_in_tree (&root, 10);
@@ -78,6 +94,12 @@ void main ()
     insert_node_in_tree (&root, 3);
     insert_node_in_tree (&root, 5);
     insert_node_in_tree (&root, 8);
+#if 0
+    new_node = malloc (sizeof (tree));
+    new_node->data = 1;
+    new_node->left = root;
+    root = new_node;
+#endif
     printf ("\n");
     print_inorder (root);
     printf ("\n");
@@ -88,5 +110,8 @@ void main ()
     printf ("\nCommon parent = %d\n", common_parent);
 
     printf ("\n");
+    h = 0;
+    is_tree_bst (root, &h);
+    printf ("\n is it tree = %d\n", h);
     printf ("\n");
 }
