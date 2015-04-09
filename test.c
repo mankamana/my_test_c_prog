@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
     int main()
     {
         struct p
         {
             char *name;
             struct p *next;
-        };
+        } temp;
 struct p *ptrary[10];
-        struct p p, q;
-        p.name = "xyz";
-        p.next = NULL;
-        ptrary[0] = &p;
-        strcpy(q.name, p.name);
-        ptrary[1] = &q;
-        printf("%s\n", ptrary[1]->name);
+        struct p *p_;
+        p_ = malloc (sizeof(struct p));
+            free(p_);
+        while (1) {
+        p_ = malloc (sizeof(struct p));
+        }
         return 0;
     }
